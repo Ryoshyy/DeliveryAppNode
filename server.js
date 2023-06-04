@@ -28,7 +28,6 @@ const storage = multer.diskStorage({
 
 const app = express();
 const upload = multer({ storage });
-const port = proccess.env.PORT || "8000";
 
 
 
@@ -42,30 +41,6 @@ app.get("/", (req, res) => {
   });
 });
 
-//USER
-// app.get("/auth/me", checkAuth, userController.getMe);
-// app.post(
-//   "/auth/login",
-//   loginValidation,
-//   handleValitationErrors,
-//   userController.login
-// );
-// app.post(
-//   "/auth/register",
-//   registerValidation,
-//   handleValitationErrors,
-//   userController.register
-// );
-// CART
-// app.post("/cart",checkAuth, cartController.create)
-
-//COMPANY
-// app.get("/companies",companyController.getAll)
-// app.post("/companies",companyController.create)
-
-//PROJECT
-// app.get("/projects", productController.getAll);
-// app.get("/projects/:id", productController.getOne);
 app.put(
   "/products",
   productController.getProductsByIds
@@ -96,23 +71,12 @@ app.get(
   productController.getCompanyProducts
 );
 
-// app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
-//   res.json({
-//     url: `/uploads/${req.file.originalname} `,
-//   });
-// });
-// app.delete("/projects/:id", checkAuth, productController.remove);
-// app.put(
-//   "/projects/:id",
-//   checkAuth,
-//   projectCreateValidation,
-//   handleValitationErrors,
-//   productController.update
-// );
 
-app.listen(port, (err) => {
+
+app.listen(process.env.PORT || 8000, (err) => {
   if (err) {
     return console.log(err);
   }
   console.log("server work");
 });
+
